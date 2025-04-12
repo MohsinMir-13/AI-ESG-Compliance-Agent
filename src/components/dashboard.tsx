@@ -1,84 +1,146 @@
 "use client";
 
-import {Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupLabel, SidebarHeader, SidebarInset, SidebarMenu, SidebarMenuAction, SidebarMenuButton, SidebarMenuItem, SidebarProvider, SidebarSeparator, SidebarTrigger, useSidebar} from "@/components/ui/sidebar";
-import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from "@/components/ui/card";
-import {Button} from "@/components/ui/button";
-import {useState} from "react";
-import {Input} from "@/components/ui/input";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarGroup,
+  SidebarGroupLabel,
+  SidebarHeader,
+  SidebarInset,
+  SidebarMenu,
+  SidebarMenuItem,
+  SidebarTrigger,
+} from "@/components/ui/sidebar";
+import { DataAggregation, AlertCenter, GlobalESGScorecard, RiskHeatmap, ComplianceCalendar } from "@/components/data-aggregation";
+import ReportingStudio from "@/components/reporting-studio";
+import DocumentAnalyzer from "@/components/document-analyzer";
+import RiskAssessment from "@/components/risk-assessment";
+import ComplianceWorkflow from "@/components/compliance-workflow";
+import StakeholderPortal from "@/components/stakeholder-portal";
+
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { useState } from "react";
+
+const renderComponent = (activeComponent: string) => {
+  switch (activeComponent) {
+    case "dashboard":
+      return (
+        <Card className="col-span-1 md:col-span-2 lg:col-span-3">
+          <CardHeader>
+            <CardTitle>Alert Center</CardTitle>
+            <CardDescription>Priority notifications</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <AlertCenter />
+          </CardContent>
+        </Card>
+      );
+    case "dataAggregation":
+      return <DataAggregation />;
+    case "riskAssessment":
+      return <RiskAssessment />;
+    case "complianceWorkflow":
+      return <ComplianceWorkflow />;
+    case "documentAnalyzer":
+      return <DocumentAnalyzer />;
+    case "stakeholderPortal":
+      return <StakeholderPortal />;
+    case "reportingStudio":
+      return <ReportingStudio />;
+    default:
+      return null;
+  }
+};
 
 const Dashboard = () => {
-  const [companyName, setCompanyName] = useState("");
-  const [industry, setIndustry] = useState("");
-
-  const handleSubmit = async () => {
-    // Handle form submission
-    console.log("Company Name:", companyName);
-    console.log("Industry:", industry);
-    // Call your data aggregation function here
-  };
-
+  const [activeComponent, setActiveComponent] = useState("dashboard");
   return (
-    <>
-      <Sidebar collapsible="icon">
+    <div className="flex h-screen">
+      <Sidebar className="w-64">
         <SidebarHeader>
-          <SidebarTrigger />
-          <div>
-            <h2 className="font-semibold text-lg">ESGComply AI</h2>
-            <p className="text-muted-foreground">Your AI Compliance Assistant</p>
-          </div>
+          <p>MENU</p>
         </SidebarHeader>
         <SidebarContent>
-          <SidebarGroup>
-            <SidebarGroupLabel>Data Input</SidebarGroupLabel>
-            <SidebarMenu>
-              <SidebarMenuItem>
-                <Input
-                  type="text"
-                  placeholder="Company Name"
-                  value={companyName}
-                  onChange={(e) => setCompanyName(e.target.value)}
-                />
+          <SidebarMenu>
+            <SidebarGroup>
+              <SidebarMenuItem
+                onClick={() => setActiveComponent("dashboard")}
+              >
+                Dashboard
               </SidebarMenuItem>
-              <SidebarMenuItem>
-                <Input
-                  type="text"
-                  placeholder="Industry"
-                  value={industry}
-                  onChange={(e) => setIndustry(e.target.value)}
-                />
+              <SidebarMenuItem
+                onClick={() => setActiveComponent("dataAggregation")}
+              >
+                Data Aggregation
               </SidebarMenuItem>
-              <SidebarMenuItem>
-                <Button onClick={handleSubmit}>Aggregate Data</Button>
+              <SidebarMenuItem
+                onClick={() => setActiveComponent("riskAssessment")}
+              >
+                Risk Assessment
               </SidebarMenuItem>
-            </SidebarMenu>
-          </SidebarGroup>
+              <SidebarMenuItem
+                onClick={() => setActiveComponent("complianceWorkflow")}
+              >
+                Compliance Workflow
+              </SidebarMenuItem>
+              <SidebarMenuItem
+                onClick={() => setActiveComponent("documentAnalyzer")}
+              >
+                Document Analyzer
+              </SidebarMenuItem>
+              <SidebarMenuItem
+                onClick={() => setActiveComponent("stakeholderPortal")}
+              >
+                Stakeholder Portal
+              </SidebarMenuItem>
+              <SidebarMenuItem
+                onClick={() => setActiveComponent("reportingStudio")}
+              >
+                Reporting Studio
+              </SidebarMenuItem>
+            </SidebarGroup>
+          </SidebarMenu>
         </SidebarContent>
         <SidebarFooter>
-          <p className="text-muted-foreground text-sm">
-            Copyright © {new Date().getFullYear()} ESGComply AI
-          </p>
+          <p>Footer</p>
         </SidebarFooter>
       </Sidebar>
-      <SidebarInset>
-        <div className="p-4">
-          <Card>
+
+      <main className="flex-1 p-4">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {renderComponent(activeComponent)}
+          <Card className="col-span-1 md:col-span-2 lg:col-span-3">
             <CardHeader>
-              <CardTitle>Dashboard</CardTitle>
-              <CardDescription>
-                Welcome to your ESG compliance dashboard.
-              </CardDescription>
+              <CardTitle>Global ESG Scorecard</CardTitle>
+              <CardDescription>Real-time ESG health score</CardDescription>
             </CardHeader>
             <CardContent>
-              {/*  Add dashboard content here */}
-              <p>No data to display yet. Please enter company details.</p>
+              <GlobalESGScorecard />
             </CardContent>
-            <CardFooter>
-              {/*  Add footer content here */}
-            </CardFooter>
+          </Card>
+          <Card className="col-span-1 md:col-span-2 lg:col-span-3">
+            <CardHeader>
+              <CardTitle>Risk Heatmap</CardTitle>
+              <CardDescription>Geographic visualization of supply chain risks</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <RiskHeatmap />
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle>Compliance Calendar</CardTitle>
+              <CardDescription>Deadlines for regulatory filings</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <ComplianceCalendar />
+            </CardContent>
           </Card>
         </div>
-      </SidebarInset>
-    </>
+      </main>
+    </div>
   );
 };
 

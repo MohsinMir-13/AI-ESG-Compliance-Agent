@@ -1,155 +1,75 @@
-# **App Name**: ESGComply AI
+# **App Name**: ESGComply AI - UI Design Blueprint
 
-## Core Features:
+## Design Principles:
 
-- Data Aggregation: Aggregate ESG data from various sources (internal systems, external feeds, web scraping) using AI-powered data extraction and cleaning tools.
-- NLP Engine: Use NLP to analyze documents, extract key clauses, detect non-compliant language, and monitor regulatory updates. Use an AI tool to send email/Slack alerts.
-- Risk Assessment: Predict ESG risks, perform scenario modeling, and provide interactive dashboards for strategic decisions using AI models. Use an AI tool to predict labor violations and emissions penalties.
-- Stakeholder Engagement: Provide customizable dashboards for stakeholders to view ESG metrics (e.g., diversity ratios), chatbots to resolve queries, and integrated surveys for employee feedback.
-- Audit & Traceability: Enable version control of policy changes and store audit trails for carbon credits and supply chain transactions.
+- **Clarity Over Complexity**: Simplify ESG metrics and risks through intuitive visual storytelling, minimizing jargon.
+- **Modularity**: Design customizable dashboards tailored to different user roles (e.g., auditors, executives, sustainability managers).
+- **Accessibility**: Ensure WCAG 2.1 compliance with sufficient contrast ratios, screen-reader support, and keyboard navigation.
+- **Responsiveness**: Deliver a consistent and optimized user experience across web, tablet, and mobile platforms.
+- **Action-Oriented**: Facilitate quick and effective decision-making by turning insights into actionable steps with minimal clicks.
+
+## Gemini UI Interface Inspiration:
+- **Clean and Minimalist**: Embrace a clutter-free design with ample white space, focusing on content clarity.
+- **Conversational Approach**: Integrate a chatbot-like interface for natural language interaction and guided workflows.
+- **Dynamic Content**: Utilize animations and transitions to provide visual feedback and enhance user engagement.
+- **Adaptive Layout**: Implement a flexible grid system that adjusts content presentation based on screen size.
+- **Contextual Help**: Offer in-app tooltips and guided tours to assist users with complex features.
+
+## Navigation:
+- **Sidebar Menu**:
+    - Collapsible sidebar for main sections:
+        - **Dashboard**: Overview of key ESG metrics and alerts.
+        - **Data Management**: Data sources, ingestion status, and validation tools.
+        - **Risk Analysis**: Predictive models, scenario planning, and risk heatmaps.
+        - **Reporting**: Report generation, templates, and scheduling.
+        - **Compliance**: Regulatory updates, gap analysis, and automated workflows.
+        - **Stakeholder Engagement**: Portals, surveys, and communication tools.
+        - **Audit Trail**: Transaction history, policy changes, and version control.
+        - **Settings**: User preferences, account management, and integrations.
+- **Top Navigation**:
+    - Search bar for quick access to data and features.
+    - User profile and notifications.
 
 ## Style Guidelines:
+  - **Primary**: White or light gray for a clean and professional foundation.
+  - **Secondary**: Deep blue or green to evoke trust and sustainability.
+  - **Accent**: Teal (#008080) for interactive highlights and data visualizations.
+  - **Typography**: Use a modern, sans-serif font (e.g., Inter, Roboto) with clear hierarchy.
 
-- Primary color: White or light gray for a clean, professional look.
-- Secondary color: Dark blue or green to convey trust and sustainability.
-- Accent: Teal (#008080) for interactive elements and data visualization highlights.
-- Clear and concise labels and descriptions for ease of understanding.
-- Use consistent and easily recognizable icons to represent different ESG metrics and categories.
-- Well-structured dashboards with clear data visualization to convey complex ESG information.
-- Subtle animations for loading data or transitioning between views to enhance user experience.
+## Core Features & UI Considerations:
 
-## Original User Request:
-Technical Architecture & Stack
-The AI ESG Compliance Agent is built on a scalable, cloud-native architecture designed to handle complex ESG data processing, real-time analytics, and seamless integration with enterprise systems. Below is a detailed breakdown of its technical components:
-
-1. Modular Microservices Architecture
-Design: The application uses a microservices architecture to ensure scalability, fault isolation, and independent deployment of features. Each core function (e.g., data ingestion, risk assessment, reporting) operates as a standalone service.
-
-Orchestration: Kubernetes manages containerized services (via Docker), enabling auto-scaling and load balancing. Serverless functions (e.g., AWS Lambda) handle event-driven tasks like triggering compliance alerts.
-
-APIs:
-
-RESTful APIs for internal communication between microservices.
-
-GraphQL for flexible querying of ESG data by frontend applications.
-
-Third-party integrations (e.g., SAP, Salesforce) via pre-built connectors and custom API adapters.
-
-2. AI/ML Frameworks & Models
-Core Libraries:
-
-Python for backend ML pipelines, leveraging TensorFlow and PyTorch for model training.
-
-Hugging Face Transformers for NLP tasks (e.g., document analysis, sentiment detection) using models like BERT and GPT-4.
-
-Custom Models:
-
-Risk Prediction: Gradient-boosted trees (XGBoost) and neural networks to forecast ESG risks (e.g., supply chain disruptions).
-
-Anomaly Detection: Unsupervised learning (Isolation Forest, Autoencoders) to flag non-compliant activities in real-time.
-
-MLOps: Kubeflow pipelines automate model training, validation, and deployment, with MLflow for tracking experiments.
-
-3. Data Infrastructure
-Storage:
-
-PostgreSQL: Relational database for structured data (e.g., compliance rules, user profiles).
-
-MongoDB: NoSQL for unstructured data (e.g., ESG reports, news articles).
-
-Amazon S3/Data Lakes: Raw ESG data storage, including carbon footprint metrics and stakeholder feedback.
-
-Processing:
-
-Apache Spark: Batch processing of large datasets (e.g., historical emissions data).
-
-Kafka: Real-time streaming for monitoring ESG metrics (e.g., live energy consumption from IoT sensors).
-
-Analytics:
-
-Elasticsearch: Enables fast text search across regulatory documents.
-
-Snowflake: Cloud data warehouse for cross-organization ESG reporting.
-
-4. Frontend & User Experience
-Web Dashboard: React.js with Redux for state management, offering dynamic visualizations (e.g., carbon emission trends).
-
-Data Visualization: Embedded Tableau/Power BI for customizable dashboards and heatmaps.
-
-Mobile: React Native app for field auditors to upload evidence (e.g., photos of sustainable practices).
-
-Chatbot: Dialogflow or Rasa-powered assistant for answering compliance queries via natural language.
-
-5. Security & Compliance
-Encryption: AES-256 for data at rest, TLS 1.3 for data in transit.
-
-Access Control: Role-based access (IAM) with Okta/Auth0 integration. Multi-factor authentication (MFA) for sensitive operations.
-
-Audit & Traceability: Immutable audit logs stored in blockchain (Hyperledger Fabric) to prevent tampering.
-
-Certifications: Complies with GDPR, SOC 2, and ISO 27001 standards.
-
-6. DevOps & Monitoring
-CI/CD: GitHub Actions/Jenkins for automated testing and deployment. Infrastructure-as-Code (IaC) via Terraform.
-
-Monitoring: Prometheus/Grafana for tracking service health. ELK Stack (Elasticsearch, Logstash, Kibana) for log analysis.
-
-Testing: Pytest (Python), Selenium (frontend), and Postman (API testing).
-
-Core Functionalities
-1. Automated ESG Data Aggregation
-Multi-Source Ingestion:
-
-Internal Systems: ERP (SAP), HRMS (Workday), and IoT sensors via APIs.
-
-External Feeds: Regulatory databases (e.g., EU Taxonomy), news APIs (e.g., Reuters), and ESG ratings (e.g., MSCI).
-
-Web Scraping: Ethical scraping tools collect public ESG disclosures from company websites, using proxies to avoid IP blocks.
-
-2. Natural Language Processing (NLP) Engine
-Document Analysis:
-
-Extracts key clauses from contracts/policies using spaCy for entity recognition.
-
-Detects non-compliant language in reports via sentiment analysis (VADER).
-
-Regulatory Updates: Monitors 100+ global ESG frameworks (e.g., GRI, SASB) and alerts users to changes via email/Slack.
-
-3. Dynamic Risk Assessment
-Predictive Analytics: Forecasts risks (e.g., labor violations, emissions penalties) using time-series models (Prophet) and Monte Carlo simulations.
-
-Scenario Modeling: "What-if" analysis for strategic decisions (e.g., switching to renewable energy) with interactive dashboards.
-
-4. Compliance Automation
-Real-Time Monitoring: Kafka streams check emissions data against thresholds (e.g., Science-Based Targets) and trigger alerts.
-
-Workflow Automation:
-
-Robotic Process Automation (RPA) bots file reports to regulators (e.g., CDP).
-
-Generates audit-ready PDF/Excel reports using Jinja2 templating.
-
-5. Stakeholder Engagement Tools
-Portals: Customizable dashboards for investors to view ESG metrics (e.g., diversity ratios).
-
-Chatbots: Resolves supplier queries on ethical sourcing guidelines 24/7.
-
-Surveys: Integrated Typeform for collecting employee feedback on DEI initiatives.
-
-6. Audit & Traceability
-Version Control: Git-like tracking of policy changes with user attribution.
-
-Blockchain Ledger: Stores audit trails for carbon credits and supply chain transactions.
-
-7. Continuous Learning
-Feedback Loop: Users flag false positives/negatives, which retrain models weekly.
-
-Benchmarking: Compares client ESG performance against industry peers using clustering algorithms (k-means).
-
-Technical Differentiation
-Unified Platform: Combines document analysis, risk modeling, and reporting in one stack (vs. siloed tools like Workiva).
-
-Explainable AI: SHAP values and LIME explain risk predictions to auditors.
-
-Low-Code Customization: Drag-and-drop interface (Retool) lets clients adapt workflows without developers.
-  
+- **Dashboard**:
+    - Customizable widgets for key metrics (e.g., carbon emissions, diversity & inclusion statistics).
+    - Visual trends and comparisons against industry benchmarks.
+    - Alert center for critical compliance issues and potential risks.
+- **Data Management**:
+    - Clear visual representation of data sources and their status.
+    - Interactive data validation tools with error highlighting.
+    - Progress indicators for data ingestion processes.
+- **Risk Analysis**:
+    - Interactive risk heatmaps and scenario modeling tools.
+    - Explainable AI visualizations to understand model predictions.
+    - "What-if" analysis with dynamic data visualization.
+- **Reporting**:
+    - Drag-and-drop interface for report customization.
+    - Templates for various reporting frameworks (e.g., GRI, SASB).
+    - Scheduling and distribution options.
+- **Compliance**:
+    - Consolidated view of relevant regulations and updates.
+    - Gap analysis visualizations to identify areas of non-compliance.
+    - Automated workflow tools for compliance tasks.
+- **Stakeholder Engagement**:
+    - Customizable portals for different stakeholder groups.
+    - Integrated survey tools with clear visual feedback.
+    - Chatbot interface for resolving queries with conversation history.
+- **Audit Trail**:
+    - Interactive timeline for policy changes and approvals.
+    - Secure and immutable audit logs with blockchain integration.
+- **User Interaction**:
+    - Use of tooltips and contextual help for complex features.
+    - Clear and consistent labeling and iconography throughout the application.
+    - Subtle animations for loading data and transitions between views.
+- **Accessibility**:
+    - Implementation of ARIA attributes for screen reader compatibility.
+    - Keyboard navigation support for all interactive elements.
+    - Sufficient contrast ratios between text and background elements.
